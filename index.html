@@ -6,69 +6,128 @@
   <title>QuestIt — Your Quest Begins. Your Bounty Awaits.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cinzel+Decorative:wght@700;900&family=Inter:wght@400;500;600;700;800&family=Metamorphous&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ── TOKENS ─────────────────────────────────────────── */
     :root {
-      --bg:     #0a0a0f;
-      --bg2:    #111118;
-      --bg3:    #16161f;
-      --card:   #1a1a25;
-      --border: rgba(255,255,255,0.08);
-      --gold:   #f5c842;
-      --purple: #7b6ef6;
-      --green:  #3ecf8e;
-      --text:   #f0f0f5;
-      --text2:  #8888a0;
-      --text3:  #55556a;
-      --radius: 12px;
+      --bg:       #09090f;
+      --bg2:      #0f0f18;
+      --bg3:      #131320;
+      --card:     #12121c;
+      --gold:     #f5c842;
+      --gold-d:   #c9a020;
+      --gold-l:   #fde68a;
+      --purple:   #7b6ef6;
+      --green:    #3ecf8e;
+      --coral:    #ff6b81;
+      --coral-d:  #e0455c;
+      --rose:     #f472b6;
+      --text:     #f0f0f5;
+      --text2:    #7878a0;
+      --text3:    #44445a;
+      --border:       rgba(255,255,255,0.07);
+      --border-gold:  rgba(245,200,66,0.18);
+      --border-coral: rgba(255,107,129,0.2);
+      --r:   14px;
+      --rsm: 8px;
+      --rlg: 24px;
+      --rpill: 100px;
     }
 
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* ── Nav ── */
+    /* ── GAMIFIED FONTS ─────────────────────────────────── */
+    /* Cinzel Decorative = RPG/quest headings — !important beats ID+element specificity */
+    .gf { font-family: 'Cinzel Decorative', 'Cinzel', serif !important; }
+    /* Metamorphous = quest eyebrow labels */
+    .mf { font-family: 'Metamorphous', serif !important; letter-spacing: 0.06em; }
+
+    /* ── LAYOUT ─────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
+    section { padding: 6rem 2rem; position: relative; z-index: 1; }
+
+    /* ── TYPOGRAPHY ─────────────────────────────────────── */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.28rem 0.9rem;
+      background: rgba(245,200,66,0.08);
+      border: 1px solid rgba(245,200,66,0.2);
+      border-radius: var(--rpill);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .eyebrow.coral {
+      background: rgba(255,107,129,0.08);
+      border-color: rgba(255,107,129,0.2);
+      color: var(--coral);
+    }
+
+    .sh2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #fff;
+      line-height: 1.18;
+      margin-bottom: 1rem;
+    }
+
+    /* ── NAV ────────────────────────────────────────────── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 200;
+      height: 66px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
-      height: 64px;
-      background: rgba(10,10,15,0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(9,9,15,0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-logo {
       font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #fff;
       text-decoration: none;
       letter-spacing: 0.04em;
-    }
-    .nav-logo span { color: var(--gold); }
-
-    .nav-links {
       display: flex;
       align-items: center;
-      gap: 2rem;
-      list-style: none;
+      gap: 0.45rem;
     }
+    .nav-logo .logo-gem {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-d));
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+    .nav-logo .logo-it { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
     .nav-links a {
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       font-weight: 500;
       color: var(--text2);
       text-decoration: none;
@@ -76,108 +135,114 @@
     }
     .nav-links a:hover { color: var(--text); }
 
+    /* ── BUTTONS ────────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.55rem 1.25rem;
-      border-radius: 8px;
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--rsm);
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.875rem;
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
       border: none;
     }
-    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-gold { background: var(--gold); color: #0a0a0f; }
+    .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-d));
+      color: #0a0a0f;
+      box-shadow: 0 4px 20px rgba(245,200,66,0.22);
+    }
+    .btn-gold:hover { box-shadow: 0 6px 28px rgba(245,200,66,0.38); }
+    .btn-coral {
+      background: linear-gradient(135deg, var(--coral), var(--coral-d));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255,107,129,0.22);
+    }
+    .btn-coral:hover { box-shadow: 0 6px 28px rgba(255,107,129,0.38); }
     .btn-outline {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text);
     }
-    .btn-outline:hover { border-color: rgba(255,255,255,0.25); }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.2); }
+    .btn-lg { padding: 0.8rem 2rem; font-size: 1rem; border-radius: var(--r); }
 
-    /* ── Sections ── */
-    section { padding: 6rem 2rem; }
+    /* ── WAVE DIVIDERS ──────────────────────────────────── */
+    .wave { display: block; width: 100%; overflow: hidden; line-height: 0; position: relative; z-index: 1; }
+    .wave svg { display: block; width: 100%; height: 56px; }
 
-    .container { max-width: 1120px; margin: 0 auto; }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.85rem;
-      background: rgba(245,200,66,0.1);
-      border: 1px solid rgba(245,200,66,0.25);
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ── Hero ── */
+    /* ── HERO ───────────────────────────────────────────── */
     #hero {
-      padding-top: 10rem;
-      padding-bottom: 7rem;
-      background:
-        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(245,200,66,0.1) 0%, transparent 65%),
-        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(123,110,246,0.14) 0%, transparent 70%);
+      padding-top: 9rem;
+      padding-bottom: 6rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
-
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 28% 45%, rgba(245,200,66,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 65% at 78% 60%, rgba(123,110,246,0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 45% at 55% 0%,  rgba(255,107,129,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: center;
+    }
     .live-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.35rem 1rem;
-      background: rgba(62,207,142,0.1);
-      border: 1px solid rgba(62,207,142,0.3);
-      border-radius: 100px;
-      font-size: 0.8rem;
+      padding: 0.32rem 0.95rem;
+      background: rgba(62,207,142,0.08);
+      border: 1px solid rgba(62,207,142,0.25);
+      border-radius: var(--rpill);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.76rem;
       font-weight: 600;
       color: var(--green);
-      margin-bottom: 2rem;
+      margin-bottom: 1.75rem;
     }
     .live-dot {
-      width: 8px; height: 8px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: var(--green);
-      animation: pulse 2s ease-in-out infinite;
+      animation: pdot 2s ease-in-out infinite;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.75); }
+    @keyframes pdot {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.4; transform:scale(0.65); }
     }
-
     #hero h1 {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-size: clamp(2.5rem, 6vw, 5.25rem);
       font-weight: 900;
-      line-height: 1.12;
+      line-height: 1.07;
       letter-spacing: 0.02em;
-      max-width: 780px;
+      color: #fff;
       margin-bottom: 1.5rem;
-      color: #ffffff;
-      text-shadow: 0 2px 40px rgba(245,200,66,0.15);
     }
     #hero h1 .gold {
       color: var(--gold);
-      text-shadow: 0 0 40px rgba(245,200,66,0.4);
+      text-shadow: 0 0 60px rgba(245,200,66,0.35);
     }
-
-    #hero .subline {
-      font-size: 1.1rem;
-      color: rgba(240,240,245,0.65);
-      max-width: 520px;
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(240,240,245,0.6);
+      max-width: 500px;
       margin-bottom: 2.5rem;
-      line-height: 1.75;
-      font-weight: 400;
-      letter-spacing: 0.01em;
+      line-height: 1.8;
     }
-
     .hero-ctas {
       display: flex;
       align-items: center;
@@ -185,49 +250,200 @@
       flex-wrap: wrap;
       margin-bottom: 3.5rem;
     }
-    .hero-ctas .btn { font-size: 1rem; padding: 0.75rem 1.75rem; }
-
-    .stats-row {
-      display: flex;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-    .stat { display: flex; flex-direction: column; gap: 0.15rem; }
-    .stat-value {
+    .hero-sep { width:1px; height:32px; background:var(--border); }
+    .stats-row { display:flex; gap:2.5rem; flex-wrap:wrap; }
+    .stat { display:flex; flex-direction:column; gap:0.08rem; }
+    .stat-val {
       font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
+      font-size: 1.65rem;
       font-weight: 700;
       color: var(--gold);
       letter-spacing: 0.03em;
     }
-    .stat-label { font-size: 0.8rem; color: rgba(240,240,245,0.45); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text3);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
 
-    /* ── How it works ── */
-    #how { background: var(--bg2); }
-
-    #how h2 {
+    /* ── PHONE (poster / quest-giver) ───────────────────── */
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    .phone-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(ellipse at center, rgba(255,107,129,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .phone {
+      width: 272px;
+      background: linear-gradient(180deg, #1a1a28 0%, #111118 100%);
+      border-radius: 42px;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.5),
+        0 40px 80px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      overflow: hidden;
+      animation: float-phone 5s ease-in-out infinite;
+    }
+    @keyframes float-phone {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+    .phone-notch {
+      width: 96px; height: 26px;
+      background: #09090f;
+      border-radius: 0 0 16px 16px;
+      margin: 0 auto;
+    }
+    .phone-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.25rem 1.25rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .phone-screen { padding: 0.65rem 0.85rem 1.4rem; }
+    .app-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.2rem 0.65rem;
+    }
+    .app-logo {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-size: 0.82rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
-      color: #ffffff;
-      margin-bottom: 3rem;
+      color: #fff;
     }
+    .app-logo span { color: var(--gold); }
+    .app-loc {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.62rem;
+      color: var(--text2);
+    }
+    /* Main quest notification */
+    .q-notif {
+      background: linear-gradient(135deg, rgba(255,107,129,0.14), rgba(255,77,109,0.06));
+      border: 1px solid rgba(255,107,129,0.25);
+      border-radius: 12px;
+      padding: 0.85rem;
+      margin-bottom: 0.55rem;
+    }
+    .n-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: var(--coral);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.56rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.16rem 0.5rem;
+      border-radius: 100px;
+      margin-bottom: 0.45rem;
+    }
+    .n-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.18rem;
+    }
+    .n-meta { font-size: 0.62rem; color: var(--text2); line-height: 1.4; margin-bottom: 0.6rem; }
+    .n-row { display:flex; align-items:center; justify-content:space-between; }
+    .n-bounty {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .n-accept {
+      background: linear-gradient(135deg, var(--gold), var(--gold-d));
+      color: #0a0a0f;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.28rem 0.7rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+    }
+    /* Small quest rows */
+    .q-sm {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0.45rem;
+    }
+    .q-sm-info {}
+    .q-sm-title { font-family:'Space Grotesk',sans-serif; font-size:0.66rem; font-weight:600; color:var(--text); }
+    .q-sm-meta  { font-size:0.58rem; color:var(--text2); }
+    .q-sm-bounty { font-family:'Space Grotesk',sans-serif; font-size:0.7rem; font-weight:700; color:var(--gold); }
+    .phone-footer {
+      text-align: center;
+      padding: 0.6rem 0 0.2rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6rem;
+      color: var(--text3);
+    }
+    .phone-footer .online { color:var(--green); font-weight:700; }
 
-    .steps-grid {
+    /* ── HOW IT WORKS ───────────────────────────────────── */
+    #how { background: var(--bg2); }
+    .steps-track {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0;
+      align-items: start;
+      margin-top: 3rem;
     }
-
+    .step-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 1.75rem;
+    }
+    .step-conn-line {
+      width: 60px;
+      height: 1px;
+      border-top: 1px dashed rgba(245,200,66,0.22);
+      position: relative;
+    }
+    .step-conn-line::after {
+      content: '▶';
+      position: absolute;
+      right: -8px;
+      top: -8px;
+      font-size: 0.6rem;
+      color: rgba(245,200,66,0.25);
+    }
     .step-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
+      border-radius: var(--r);
+      padding: 2rem 1.75rem;
       position: relative;
       overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
     }
+    .step-card:hover { border-color: rgba(245,200,66,0.2); transform: translateY(-3px); }
     .step-card::before {
       content: '';
       position: absolute;
@@ -235,301 +451,495 @@
       height: 2px;
       background: linear-gradient(90deg, var(--gold), var(--purple));
     }
-
+    .step-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(245,200,66,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
     .step-num {
-      font-size: 0.7rem;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(245,200,66,0.08);
+      border: 1px solid rgba(245,200,66,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
       font-weight: 700;
       color: var(--gold);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
+    .step-emoji { font-size: 2.1rem; display:block; margin-bottom:0.9rem; }
+    .step-card h3 { font-size:1.05rem; font-weight:700; margin-bottom:0.55rem; }
+    .step-card p  { font-size:0.875rem; color:var(--text2); line-height:1.7; }
 
-    .step-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .step-card h3 {
-      font-size: 1.125rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
-    .step-card p { font-size: 0.9rem; color: var(--text2); line-height: 1.65; }
-
-    /* ── Quest types ── */
+    /* ── QUEST BOARD ────────────────────────────────────── */
     #quest-types { background: var(--bg); }
-
-    #quest-types h2 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: #ffffff;
-      margin-bottom: 3rem;
-      max-width: 640px;
+    .qb-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
     }
-
     .quests-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(228px,1fr));
+      gap: 1.2rem;
     }
-
     .quest-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(24,17,11,0.85) 0%, #12121c 100%);
+      border: 1px solid rgba(245,200,66,0.12);
+      border-radius: var(--r);
       padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .quest-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(245,200,66,0.045) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .quest-card::after {
+      content: '✦';
+      position: absolute;
+      bottom: 0.7rem; right: 0.85rem;
+      font-size: 0.6rem;
+      color: rgba(245,200,66,0.18);
     }
     .quest-card:hover {
-      border-color: rgba(245,200,66,0.25);
-      transform: translateY(-3px);
+      border-color: rgba(245,200,66,0.28);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(245,200,66,0.05);
     }
-
-    .quest-icon { font-size: 2rem; margin-bottom: 0.85rem; }
-
-    .quest-card h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
+    .quest-icon { font-size:2rem; display:block; margin-bottom:0.75rem; }
+    .quest-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
     }
-
-    .quest-card p { font-size: 0.825rem; color: var(--text2); margin-bottom: 1rem; line-height: 1.55; }
-
-    .bounty-badge {
+    .quest-card h3 { font-size:1rem; font-weight:700; }
+    .diff-dots { display:flex; gap:3px; padding-top:2px; }
+    .dd {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+    }
+    .dd.on      { background: var(--gold); }
+    .dd.on.hot  { background: var(--coral); }
+    .quest-card p { font-size:0.82rem; color:var(--text2); line-height:1.6; margin-bottom:1rem; }
+    .bounty-tag {
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      padding: 0.25rem 0.7rem;
-      background: rgba(245,200,66,0.12);
-      border: 1px solid rgba(245,200,66,0.3);
-      border-radius: 100px;
-      font-size: 0.75rem;
+      padding: 0.24rem 0.72rem;
+      background: rgba(245,200,66,0.09);
+      border: 1px solid rgba(245,200,66,0.2);
+      border-radius: var(--rpill);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.73rem;
       font-weight: 700;
       color: var(--gold);
     }
 
-    /* ── For businesses ── */
-    #businesses { background: var(--bg2); }
-
-    #businesses h2 {
+    /* ── BECOME A HUNTER ────────────────────────────────── */
+    #hunters { background: var(--bg2); overflow: hidden; }
+    #hunters::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      background: radial-gradient(ellipse at right top, rgba(255,107,129,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hunters-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hunters-lead {
+      font-size: 1rem;
+      color: var(--text2);
+      line-height: 1.78;
+      margin-bottom: 2rem;
+      max-width: 460px;
+    }
+    .earn-stats { display:flex; gap:2.25rem; margin-bottom:2.25rem; flex-wrap:wrap; }
+    .earn-val {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: 1.8rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
-      color: #ffffff;
-      margin-bottom: 1rem;
+      color: var(--coral);
+      display: block;
+    }
+    .earn-label {
+      font-size: 0.72rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+    .hf-list { display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2rem; }
+    .hf-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .hf-icon {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: rgba(255,107,129,0.1);
+      border: 1px solid rgba(255,107,129,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    /* Hunter phone mockup */
+    .phone-hunter {
+      background: linear-gradient(180deg, #1a1225 0%, #111118 100%);
+      border-radius: 36px;
+      border: 2px solid rgba(255,107,129,0.15);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.4),
+        0 30px 60px rgba(0,0,0,0.5),
+        0 0 60px rgba(255,107,129,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      overflow: hidden;
+      animation: float-phone 5.5s 0.5s ease-in-out infinite;
+    }
+    .ph-topbar {
+      background: linear-gradient(135deg, rgba(255,107,129,0.13), rgba(255,77,109,0.04));
+      border-bottom: 1px solid rgba(255,107,129,0.14);
+      padding: 1rem 1.25rem 0.85rem;
+    }
+    .ph-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      color: var(--coral);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.12rem;
+    }
+    .ph-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .ph-screen { padding: 1rem; }
+    .cleared-card {
+      background: linear-gradient(135deg, rgba(62,207,142,0.1), rgba(62,207,142,0.04));
+      border: 1px solid rgba(62,207,142,0.2);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 0.7rem;
+      text-align: center;
+    }
+    .cc-emoji { font-size:1.75rem; display:block; margin-bottom:0.3rem; }
+    .cc-tag {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:0.62rem;
+      font-weight:700;
+      color:var(--green);
+      text-transform:uppercase;
+      letter-spacing:0.07em;
+      margin-bottom:0.18rem;
+    }
+    .cc-amount {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.35rem;
+      font-weight:700;
+      color:var(--text);
+      margin-bottom:0.15rem;
+    }
+    .cc-meta { font-size:0.63rem; color:var(--text2); }
+    .balance-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .bc-label {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:0.58rem;
+      font-weight:600;
+      color:var(--text3);
+      letter-spacing:0.05em;
+      text-transform:uppercase;
+      margin-bottom:0.12rem;
+    }
+    .bc-amount {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.1rem;
+      font-weight:700;
+      color:var(--text);
+    }
+    .bc-cashout {
+      background: linear-gradient(135deg, var(--coral), var(--coral-d));
+      color: #fff;
+      font-family:'Space Grotesk',sans-serif;
+      font-size:0.62rem;
+      font-weight:700;
+      padding:0.3rem 0.7rem;
+      border-radius:100px;
+      border:none;
+      cursor:pointer;
+    }
+    .rank-mini {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: var(--card);
+      border: 1px solid rgba(245,200,66,0.12);
+      border-radius: 10px;
+      padding: 0.65rem 0.85rem;
+    }
+    .rm-badge {
+      width:32px; height:32px;
+      border-radius:8px;
+      background:rgba(245,200,66,0.08);
+      border:1px solid rgba(245,200,66,0.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.95rem;
+    }
+    .rm-info { flex:1; }
+    .rm-rank {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:0.66rem;
+      font-weight:700;
+      color:var(--gold);
+    }
+    .rm-xp { font-size:0.58rem; color:var(--text3); }
+    .rm-track {
+      height:3px;
+      background:rgba(255,255,255,0.05);
+      border-radius:100px;
+      overflow:hidden;
+      margin-top:0.28rem;
+    }
+    .rm-fill {
+      width:45%;
+      height:100%;
+      background:linear-gradient(90deg, var(--gold), var(--purple));
+      border-radius:100px;
     }
 
+    /* ── RANKS ──────────────────────────────────────────── */
+    #ranks { background: var(--bg); }
+    .ranks-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .rank-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .rank-card:hover { transform: translateY(-4px); }
+    .rk-glow {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 90px;
+      pointer-events: none;
+    }
+    .rk-bronze  .rk-glow { background: radial-gradient(ellipse at 50% 0%, rgba(205,127,50,0.28) 0%, transparent 70%); }
+    .rk-silver  .rk-glow { background: radial-gradient(ellipse at 50% 0%, rgba(192,192,192,0.2) 0%, transparent 70%); }
+    .rk-gold    .rk-glow { background: radial-gradient(ellipse at 50% 0%, rgba(245,200,66,0.28) 0%, transparent 70%); }
+    .rk-diamond .rk-glow { background: radial-gradient(ellipse at 50% 0%, rgba(123,110,246,0.32) 0%, transparent 70%); }
+    .rk-icon { font-size:2rem; display:block; margin-bottom:0.85rem; position:relative; z-index:1; }
+    .rk-badge {
+      display: inline-flex;
+      padding: 0.2rem 0.72rem;
+      border-radius: var(--rpill);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+      position: relative; z-index:1;
+    }
+    .rk-bronze  .rk-badge { background:rgba(205,127,50,0.12); color:#cd7f32; border:1px solid rgba(205,127,50,0.25); }
+    .rk-silver  .rk-badge { background:rgba(192,192,192,0.1);  color:#bbb;    border:1px solid rgba(192,192,192,0.2);  }
+    .rk-gold    .rk-badge { background:rgba(245,200,66,0.1);   color:var(--gold);   border:1px solid rgba(245,200,66,0.25); }
+    .rk-diamond .rk-badge { background:rgba(123,110,246,0.12); color:var(--purple); border:1px solid rgba(123,110,246,0.25); }
+    .rank-card h3 { font-size:1rem; font-weight:700; margin-bottom:0.5rem; position:relative; z-index:1; }
+    .rank-card p  { font-size:0.82rem; color:var(--text2); line-height:1.6; margin-bottom:1.25rem; position:relative; z-index:1; }
+    .xp-track {
+      height: 4px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: 0.38rem;
+      position: relative; z-index:1;
+    }
+    .xp-fill { height:100%; border-radius:100px; }
+    .rk-bronze  .xp-fill { background:linear-gradient(90deg,#cd7f32,#e8a44c); }
+    .rk-silver  .xp-fill { background:linear-gradient(90deg,#888,#ccc); }
+    .rk-gold    .xp-fill { background:linear-gradient(90deg,var(--gold),#fde68a); }
+    .rk-diamond .xp-fill { background:linear-gradient(90deg,var(--purple),var(--rose)); }
+    .xp-label { font-size:0.66rem; color:var(--text3); font-family:'Space Grotesk',sans-serif; position:relative; z-index:1; }
+
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(6,1fr);
+      gap: 1rem;
+    }
+    .ach-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.25rem 0.75rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .ach-card:hover { border-color:rgba(245,200,66,0.2); transform:translateY(-3px); }
+    .ach-icon { font-size:1.75rem; display:block; margin-bottom:0.48rem; }
+    .ach-name { font-size:0.75rem; font-weight:700; margin-bottom:0.22rem; }
+    .ach-desc { font-size:0.66rem; color:var(--text3); line-height:1.4; }
+
+    /* ── BUSINESSES ─────────────────────────────────────── */
+    #businesses { background: var(--bg2); }
     .biz-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
     }
-
-    .biz-left p {
-      color: var(--text2);
-      margin-bottom: 2rem;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .feature-rows { display: flex; flex-direction: column; gap: 0.85rem; }
-
-    .feature-row {
+    .biz-left p { font-size:0.95rem; color:var(--text2); line-height:1.75; margin-bottom:2rem; }
+    .biz-features { display:flex; flex-direction:column; gap:0.72rem; margin-bottom:2rem; }
+    .biz-feat {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       font-weight: 500;
     }
-    .feature-row::before {
-      content: '✓';
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: rgba(62,207,142,0.15);
-      color: var(--green);
-      font-size: 0.75rem;
-      font-weight: 700;
-      flex-shrink: 0;
+    .bf-chk {
+      width:22px; height:22px;
+      border-radius:50%;
+      background:rgba(62,207,142,0.1);
+      border:1px solid rgba(62,207,142,0.2);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.62rem;
+      color:var(--green);
+      flex-shrink:0;
     }
-
-    .mockup-card {
+    .biz-mockup {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--rlg);
       overflow: hidden;
     }
-
-    .mockup-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .bm-header {
+      padding:1.1rem 1.4rem;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
-
-    .mockup-logo {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text);
+    .bm-logo { font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:700; }
+    .bm-logo span { color:var(--purple); }
+    .bm-pw { font-family:'Space Grotesk',sans-serif; font-size:0.64rem; color:var(--text3); }
+    .bm-quests { padding:0.85rem; display:flex; flex-direction:column; gap:0.6rem; }
+    .bm-row {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:var(--bg3);
+      border:1px solid var(--border);
+      border-radius:var(--rsm);
+      padding:0.82rem 1rem;
     }
-    .mockup-logo span { color: var(--purple); }
+    .bm-title { font-size:0.82rem; font-weight:600; margin-bottom:0.08rem; }
+    .bm-meta  { font-size:0.7rem; color:var(--text2); }
+    .bm-bounty { font-family:'Space Grotesk',sans-serif; font-size:0.82rem; font-weight:700; color:var(--gold); }
+    .bm-footer { padding:0.85rem 1.25rem; border-top:1px solid var(--border); display:flex; justify-content:flex-end; }
 
-    .powered-by {
-      font-size: 0.7rem;
-      color: var(--text3);
-    }
-
-    .mockup-quests { padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
-
-    .mq-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.85rem 1rem;
-    }
-
-    .mq-info { display: flex; flex-direction: column; gap: 0.15rem; }
-    .mq-title { font-size: 0.825rem; font-weight: 600; }
-    .mq-meta { font-size: 0.725rem; color: var(--text2); }
-
-    .mq-bounty {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .mockup-footer {
-      padding: 1rem 1.5rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    /* ── Hunter rewards ── */
-    #rewards { background: var(--bg); }
-
-    #rewards h2 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: #ffffff;
-      margin-bottom: 3rem;
-      max-width: 640px;
-    }
-
-    .ranks-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 3rem;
-    }
-
-    .rank-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem 1.5rem;
-    }
-
-    .rank-badge {
-      display: inline-flex;
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .rank-bronze { background: rgba(205,127,50,0.15); color: #cd7f32; border: 1px solid rgba(205,127,50,0.3); }
-    .rank-silver { background: rgba(192,192,192,0.1); color: #c0c0c0; border: 1px solid rgba(192,192,192,0.25); }
-    .rank-gold   { background: rgba(245,200,66,0.1); color: var(--gold); border: 1px solid rgba(245,200,66,0.3); }
-    .rank-diamond{ background: rgba(123,110,246,0.12); color: var(--purple); border: 1px solid rgba(123,110,246,0.3); }
-
-    .rank-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .rank-card p { font-size: 0.825rem; color: var(--text2); margin-bottom: 1.25rem; line-height: 1.55; }
-
-    .xp-bar-track {
-      height: 5px;
-      background: var(--bg3);
-      border-radius: 100px;
-      overflow: hidden;
-      margin-bottom: 0.4rem;
-    }
-    .xp-bar-fill {
-      height: 100%;
-      border-radius: 100px;
-      background: linear-gradient(90deg, var(--gold), var(--purple));
-    }
-    .xp-label { font-size: 0.7rem; color: var(--text3); }
-
-    .achievements-row {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .achievement {
-      flex: 1;
-      min-width: 140px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1rem;
-      text-align: center;
-    }
-
-    .achievement-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
-    .achievement h4 { font-size: 0.825rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .achievement p { font-size: 0.725rem; color: var(--text3); line-height: 1.4; }
-
-    /* ── Final CTA ── */
-    #cta {
+    /* ── CTA ────────────────────────────────────────────── */
+    #cta { background: var(--bg); text-align: center; }
+    .cta-inner {
       background: var(--bg2);
-      text-align: center;
+      border: 1px solid rgba(245,200,66,0.12);
+      border-radius: 28px;
+      padding: 5rem 3rem;
+      position: relative;
+      overflow: hidden;
     }
-
-    #cta h2 {
+    .cta-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 28% 50%, rgba(245,200,66,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 72% 50%, rgba(255,107,129,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-corner {
+      position: absolute;
+      font-size: 1.4rem;
+      opacity: 0.14;
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.6rem, 4vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: #ffffff;
-      margin-bottom: 1rem;
     }
-
-    .cta-sub {
-      font-size: 1.05rem;
-      color: var(--text2);
-      margin-bottom: 2.5rem;
-    }
-
-    .cta-btns {
+    .cta-corner.tl { top:1.25rem; left:1.5rem; }
+    .cta-corner.tr { top:1.25rem; right:1.5rem; }
+    .cta-corner.bl { bottom:1.25rem; left:1.5rem; }
+    .cta-corner.br { bottom:1.25rem; right:1.5rem; }
+    .cta-sub { font-size:1rem; color:var(--text2); max-width:420px; margin:0 auto 2.75rem; line-height:1.72; }
+    .cta-dual {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
-      margin-bottom: 1.75rem;
+      margin-bottom: 2rem;
     }
-    .cta-btns .btn { font-size: 1rem; padding: 0.75rem 1.75rem; }
+    .cta-path { display:flex; flex-direction:column; align-items:center; gap:0.6rem; }
+    .cta-path-label {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:0.66rem;
+      font-weight:600;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:var(--text3);
+    }
+    .cta-or {
+      font-family:'Cinzel',serif;
+      font-size:0.85rem;
+      color:var(--text3);
+    }
+    .trust-note { font-size:0.76rem; color:var(--text3); font-family:'Space Grotesk',sans-serif; }
 
-    .trust-note { font-size: 0.8rem; color: var(--text3); }
-
-    /* ── Footer ── */
+    /* ── FOOTER ─────────────────────────────────────────── */
     footer {
       background: var(--bg);
       border-top: 1px solid var(--border);
@@ -539,318 +949,607 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
+      position: relative;
+      z-index: 1;
     }
-
     .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #ffffff;
-      text-decoration: none;
-      letter-spacing: 0.04em;
+      font-family:'Cinzel',serif;
+      font-size:1rem;
+      font-weight:700;
+      color:#fff;
+      text-decoration:none;
+      letter-spacing:0.04em;
     }
-    .footer-logo span { color: var(--gold); }
+    .footer-logo span { color:var(--gold); }
+    .footer-copy { font-size:0.76rem; color:var(--text3); }
+    .footer-links { display:flex; gap:1.5rem; list-style:none; }
+    .footer-links a { font-size:0.76rem; color:var(--text3); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--text2); }
 
-    .footer-copy { font-size: 0.8rem; color: var(--text3); }
+    /* ── SECTION BACKGROUNDS ────────────────────────────── */
 
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
+    /* Medieval: warm amber stone-tile grid — for quest/RPG sections */
+    #hero,
+    #quest-types,
+    #ranks,
+    #cta {
+      background-color: #0b0906;
+      background-image:
+        linear-gradient(rgba(180,140,50,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,140,50,0.055) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
-    .footer-links a {
-      font-size: 0.8rem;
-      color: var(--text3);
-      text-decoration: none;
-      transition: color 0.2s;
+    /* Extra warm glow layered on top via pseudo for cta scroll area */
+    #cta .cta-inner {
+      background: rgba(15,10,4,0.6);
+      border-color: rgba(245,200,66,0.18);
     }
-    .footer-links a:hover { color: var(--text2); }
 
-    /* ── Responsive ── */
+    /* Modern: cool blue-white dot grid — for app/side-hustle sections */
+    #how,
+    #hunters,
+    #businesses {
+      background-color: #0e0e1a;
+      background-image: radial-gradient(circle, rgba(150,150,255,0.032) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* ── REVEAL ANIMATIONS ──────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in { opacity:1; transform:translateY(0); }
+    .d1 { transition-delay:0.1s; }
+    .d2 { transition-delay:0.2s; }
+    .d3 { transition-delay:0.3s; }
+    .d4 { transition-delay:0.4s; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero-grid         { grid-template-columns:1fr; }
+      .phone-wrap        { display:none; }
+      .hunters-grid      { grid-template-columns:1fr; }
+      .phone-hunter      { display:none; }
+      .ranks-grid        { grid-template-columns:repeat(2,1fr); }
+      .ach-grid          { grid-template-columns:repeat(3,1fr); }
+      .biz-grid          { grid-template-columns:1fr; gap:2.5rem; }
+      .steps-track       { grid-template-columns:1fr; gap:1.2rem; }
+      .step-connector    { display:none; }
+    }
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-
-      nav { padding: 0 1.25rem; }
-
-      #hero { padding-top: 7rem; padding-bottom: 5rem; }
-      section { padding: 4rem 1.25rem; }
-
-      .steps-grid { grid-template-columns: 1fr; }
-      .biz-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .ranks-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-row { gap: 2rem; }
-
-      footer { flex-direction: column; align-items: flex-start; }
+      .nav-links { display:none; }
+      nav        { padding:0 1.25rem; }
+      section    { padding:4rem 1.25rem; }
+      #hero      { padding-top:7rem; padding-bottom:4rem; }
+      .cta-inner { padding:3rem 1.5rem; }
+      .qb-header { flex-direction:column; }
     }
-
-    @media (max-width: 480px) {
-      .ranks-grid { grid-template-columns: 1fr; }
-      .achievement { min-width: 120px; }
+    @media (max-width: 520px) {
+      .ranks-grid { grid-template-columns:1fr; }
+      .ach-grid   { grid-template-columns:repeat(2,1fr); }
+      .cta-dual   { flex-direction:column; }
+      .earn-stats { gap:1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Nav -->
+  <!-- ══ NAV ══════════════════════════════════════════════ -->
   <nav>
-    <a href="#hero" class="nav-logo">Quest<span>It</span></a>
+    <a href="#hero" class="nav-logo">
+      <span class="logo-gem">⚔</span>
+      Quest<span class="logo-it">It</span>
+    </a>
     <ul class="nav-links">
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#quest-types">Quest types</a></li>
-      <li><a href="#businesses">For businesses</a></li>
-      <li><a href="#rewards">Rewards</a></li>
+      <li><a href="#how">How it Works</a></li>
+      <li><a href="#quest-types">Quest Types</a></li>
+      <li><a href="#hunters">Become a Hunter</a></li>
+      <li><a href="#businesses">For Business</a></li>
     </ul>
     <a href="#cta" class="btn btn-gold">Post a Quest</a>
   </nav>
 
-  <!-- Hero -->
+  <!-- ══ HERO ═════════════════════════════════════════════ -->
   <section id="hero">
     <div class="container">
-      <div class="live-badge">
-        <span class="live-dot"></span>
-        Hunters are active in your area
-      </div>
-      <h1>Your Quest Begins.<br><span class="gold">Your Bounty Awaits.</span></h1>
-      <p class="subline">Post any task as a quest. Set a bounty. A skilled Hunter nearby claims it and delivers — today. The marketplace where work feels like an adventure.</p>
-      <div class="hero-ctas">
-        <a href="#cta" class="btn btn-gold">Post a Quest</a>
-        <a href="#cta" class="btn btn-outline">Become a Hunter →</a>
-      </div>
-      <div class="stats-row">
-        <div class="stat">
-          <span class="stat-value">14,200+</span>
-          <span class="stat-label">Quests Cleared</span>
+      <div class="hero-grid">
+
+        <!-- Left: quest-giver copy -->
+        <div class="hero-left">
+          <div class="live-badge reveal">
+            <span class="live-dot"></span>
+            Hunters are active in your area
+          </div>
+          <h1 class="gf reveal d1">
+            Your Quest Begins.<br>
+            <span class="gold">Your Bounty Awaits.</span>
+          </h1>
+          <p class="hero-sub reveal d2">
+            Post any task as a quest. Set a bounty. A skilled Hunter nearby claims it and delivers — today. The marketplace where work feels like an adventure.
+          </p>
+          <div class="hero-ctas reveal d3">
+            <a href="#cta" class="btn btn-gold btn-lg">Post a Quest</a>
+            <span class="hero-sep"></span>
+            <a href="#hunters" class="btn btn-coral btn-lg">Become a Hunter →</a>
+          </div>
+          <div class="stats-row reveal d4">
+            <div class="stat">
+              <span class="stat-val" data-count="14200" data-suffix="+">14,200+</span>
+              <span class="stat-label">Quests Cleared</span>
+            </div>
+            <div class="stat">
+              <span class="stat-val" data-count="3800" data-suffix="+">3,800+</span>
+              <span class="stat-label">Active Hunters</span>
+            </div>
+            <div class="stat">
+              <span class="stat-val">4.9 ★</span>
+              <span class="stat-label">Average Rating</span>
+            </div>
+          </div>
         </div>
-        <div class="stat">
-          <span class="stat-value">3,800+</span>
-          <span class="stat-label">Active Hunters</span>
+
+        <!-- Right: phone mockup showing quest-giver app -->
+        <div class="hero-right reveal d2">
+          <div class="phone-wrap">
+            <div class="phone">
+              <div class="phone-notch"></div>
+              <div class="phone-status">
+                <span>9:41</span>
+                <span>⚡ Manila</span>
+              </div>
+              <div class="phone-screen">
+                <div class="app-topbar">
+                  <div class="app-logo">Quest<span>It</span></div>
+                  <div class="app-loc">📍 BGC, Taguig</div>
+                </div>
+
+                <div class="q-notif">
+                  <div class="n-tag">🔔 New Quest</div>
+                  <div class="n-title">Product Photography</div>
+                  <div class="n-meta">Lifestyle shots for online store<br>BGC, Taguig · 0.8 km · Due 5PM</div>
+                  <div class="n-row">
+                    <span class="n-bounty">₱ 2,400</span>
+                    <button class="n-accept">Accept Quest</button>
+                  </div>
+                </div>
+
+                <div class="q-sm">
+                  <div class="q-sm-info">
+                    <div class="q-sm-title">✍️ Social Media Captions</div>
+                    <div class="q-sm-meta">Writing · 1.2 km away</div>
+                  </div>
+                  <span class="q-sm-bounty">₱ 350</span>
+                </div>
+
+                <div class="q-sm">
+                  <div class="q-sm-info">
+                    <div class="q-sm-title">🔍 Market Research</div>
+                    <div class="q-sm-meta">Research · 2.1 km away</div>
+                  </div>
+                  <span class="q-sm-bounty">₱ 500</span>
+                </div>
+
+                <div class="phone-footer">
+                  <span class="online">23</span> Hunters online nearby
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="stat">
-          <span class="stat-value">4.9 ★</span>
-          <span class="stat-label">Average Quest Rating</span>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
+  <!-- wave down into bg2 -->
+  <div class="wave">
+    <svg viewBox="0 0 1440 56" preserveAspectRatio="none">
+      <path d="M0,28 C240,54 480,2 720,28 C960,54 1200,4 1440,28 L1440,56 L0,56 Z" fill="#0f0f18"/>
+    </svg>
+  </div>
+
+  <!-- ══ HOW IT WORKS ══════════════════════════════════════ -->
   <section id="how">
     <div class="container">
-      <div class="section-label">⚔ How it works</div>
-      <h2>Three steps to Quest Cleared.</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">Step 01</div>
-          <div class="step-icon">📋</div>
+      <div class="eyebrow reveal">⚔ How it Works</div>
+      <h2 class="sh2 reveal d1">Three Steps to Quest Cleared.</h2>
+      <div class="steps-track">
+        <div class="step-card reveal d1">
+          <div class="step-num">01</div>
+          <span class="step-emoji">📋</span>
           <h3>Post a Quest</h3>
-          <p>Describe what you need done — writing, research, delivery, design, anything. Add a deadline and any special instructions for your Hunter.</p>
+          <p>Describe what you need done. Add a deadline, location, and any special requirements for your Hunter. Takes under 2 minutes.</p>
         </div>
-        <div class="step-card">
-          <div class="step-num">Step 02</div>
-          <div class="step-icon">💰</div>
+        <div class="step-connector reveal d2">
+          <div class="step-conn-line"></div>
+        </div>
+        <div class="step-card reveal d2">
+          <div class="step-num">02</div>
+          <span class="step-emoji">💰</span>
           <h3>Set a Bounty</h3>
-          <p>Name your price. QuestIt shows you market-rate bounties for each quest type so you can offer a fair reward and attract the best Hunters fast.</p>
+          <p>Name your price. We show you market-rate bounties so you offer a fair reward and attract the best Hunter fast.</p>
         </div>
-        <div class="step-card">
-          <div class="step-num">Step 03</div>
-          <div class="step-icon">🏹</div>
+        <div class="step-connector reveal d3">
+          <div class="step-conn-line"></div>
+        </div>
+        <div class="step-card reveal d3">
+          <div class="step-num">03</div>
+          <span class="step-emoji">🏹</span>
           <h3>Hunter Delivers</h3>
-          <p>A verified Hunter accepts your quest, completes the work, and submits for your approval. Rate them, release the bounty, and the quest is cleared.</p>
+          <p>A verified Hunter accepts your quest, completes the work, and submits for approval. Rate them, release the bounty — quest cleared.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Quest types -->
+  <!-- wave back to bg -->
+  <div class="wave" style="transform:scaleY(-1);margin-top:-1px">
+    <svg viewBox="0 0 1440 56" preserveAspectRatio="none">
+      <path d="M0,28 C240,54 480,2 720,28 C960,54 1200,4 1440,28 L1440,56 L0,56 Z" fill="#0f0f18"/>
+    </svg>
+  </div>
+
+  <!-- ══ QUEST BOARD ════════════════════════════════════════ -->
   <section id="quest-types">
     <div class="container">
-      <div class="section-label">🗺 Quest types</div>
-      <h2>Every skill is a quest waiting to be claimed.</h2>
+      <div class="qb-header">
+        <div>
+          <div class="eyebrow mf reveal">🗺 Quest Board</div>
+          <h2 class="sh2 gf reveal d1">Every Skill is a Quest<br>Waiting to be Claimed.</h2>
+        </div>
+        <a href="#cta" class="btn btn-outline reveal d1" style="align-self:flex-end;white-space:nowrap">Browse all quests →</a>
+      </div>
       <div class="quests-grid">
-        <div class="quest-card">
-          <div class="quest-icon">✍️</div>
-          <h3>Writing</h3>
+        <div class="quest-card reveal">
+          <span class="quest-icon">✍️</span>
+          <div class="quest-card-top">
+            <h3>Writing</h3>
+            <div class="diff-dots">
+              <span class="dd on"></span><span class="dd on"></span><span class="dd"></span>
+            </div>
+          </div>
           <p>Blog posts, product descriptions, social copy, and long-form content crafted by skilled writers.</p>
-          <span class="bounty-badge">avg ₱350</span>
+          <span class="bounty-tag">avg ₱350</span>
         </div>
-        <div class="quest-card">
-          <div class="quest-icon">🔍</div>
-          <h3>Research</h3>
+        <div class="quest-card reveal d1">
+          <span class="quest-icon">🔍</span>
+          <div class="quest-card-top">
+            <h3>Research</h3>
+            <div class="diff-dots">
+              <span class="dd on"></span><span class="dd on"></span><span class="dd on"></span>
+            </div>
+          </div>
           <p>Market research, competitor analysis, data gathering, and curated summaries delivered fast.</p>
-          <span class="bounty-badge">avg ₱500</span>
+          <span class="bounty-tag">avg ₱500</span>
         </div>
-        <div class="quest-card">
-          <div class="quest-icon">🎨</div>
-          <h3>Design</h3>
+        <div class="quest-card reveal d2">
+          <span class="quest-icon">🎨</span>
+          <div class="quest-card-top">
+            <h3>Design</h3>
+            <div class="diff-dots">
+              <span class="dd on"></span><span class="dd on"></span><span class="dd on hot"></span>
+            </div>
+          </div>
           <p>Logos, social media graphics, presentation decks, and brand assets from verified creatives.</p>
-          <span class="bounty-badge">avg ₱750</span>
+          <span class="bounty-tag">avg ₱750</span>
         </div>
-        <div class="quest-card">
-          <div class="quest-icon">📸</div>
-          <h3>Photography</h3>
+        <div class="quest-card reveal d3">
+          <span class="quest-icon">📸</span>
+          <div class="quest-card-top">
+            <h3>Photography</h3>
+            <div class="diff-dots">
+              <span class="dd on"></span><span class="dd on"></span><span class="dd on hot"></span>
+            </div>
+          </div>
           <p>Product shots, portraits, event coverage, and location photography from nearby professionals.</p>
-          <span class="bounty-badge">avg ₱1,200</span>
+          <span class="bounty-tag">avg ₱1,200</span>
         </div>
-        <div class="quest-card">
-          <div class="quest-icon">🎬</div>
-          <h3>Video</h3>
-          <p>Short-form content, reels, promotional clips, and explainer videos edited and delivered same day.</p>
-          <span class="bounty-badge">avg ₱1,500</span>
+        <div class="quest-card reveal">
+          <span class="quest-icon">🎬</span>
+          <div class="quest-card-top">
+            <h3>Video</h3>
+            <div class="diff-dots">
+              <span class="dd on"></span><span class="dd on"></span><span class="dd on hot"></span>
+            </div>
+          </div>
+          <p>Short-form content, reels, promo clips, and explainer videos edited and delivered same day.</p>
+          <span class="bounty-tag">avg ₱1,500</span>
         </div>
-        <div class="quest-card">
-          <div class="quest-icon">📊</div>
-          <h3>Data</h3>
+        <div class="quest-card reveal d1">
+          <span class="quest-icon">📊</span>
+          <div class="quest-card-top">
+            <h3>Data</h3>
+            <div class="diff-dots">
+              <span class="dd on"></span><span class="dd"></span><span class="dd"></span>
+            </div>
+          </div>
           <p>Data entry, spreadsheet cleanup, scraping, and reporting done accurately and on schedule.</p>
-          <span class="bounty-badge">avg ₱400</span>
+          <span class="bounty-tag">avg ₱400</span>
         </div>
-        <div class="quest-card">
-          <div class="quest-icon">🎉</div>
-          <h3>Events</h3>
+        <div class="quest-card reveal d2">
+          <span class="quest-icon">🎉</span>
+          <div class="quest-card-top">
+            <h3>Events</h3>
+            <div class="diff-dots">
+              <span class="dd on"></span><span class="dd on"></span><span class="dd on hot"></span>
+            </div>
+          </div>
           <p>Coordination, venue research, vendor sourcing, and on-the-ground support for your next event.</p>
-          <span class="bounty-badge">avg ₱900</span>
+          <span class="bounty-tag">avg ₱900</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- For businesses -->
-  <section id="businesses">
+  <!-- wave into bg2 -->
+  <div class="wave">
+    <svg viewBox="0 0 1440 56" preserveAspectRatio="none">
+      <path d="M0,28 C360,54 720,2 1080,28 C1260,42 1380,50 1440,28 L1440,56 L0,56 Z" fill="#0f0f18"/>
+    </svg>
+  </div>
+
+  <!-- ══ BECOME A HUNTER ═══════════════════════════════════ -->
+  <section id="hunters">
     <div class="container">
-      <div class="section-label">🏢 For businesses</div>
-      <div class="biz-grid">
-        <div class="biz-left">
-          <h2>Power your team with on-demand talent.</h2>
-          <p>QuestIt gives businesses a headless workforce layer — post quests at scale, integrate via API, or white-label the entire platform under your own brand. Built for teams that need output now, not next week.</p>
-          <div class="feature-rows">
-            <div class="feature-row">Headless API with full quest lifecycle control</div>
-            <div class="feature-row">White-label branding — your logo, your colors</div>
-            <div class="feature-row">Custom bounty models and payment rails</div>
-            <div class="feature-row">Compliance-ready with audit logs and worker verification</div>
-          </div>
-        </div>
-        <div class="biz-right">
-          <div class="mockup-card">
-            <div class="mockup-header">
-              <div class="mockup-logo">Nest<span>Works</span></div>
-              <div class="powered-by">powered by QuestIt</div>
+      <div class="hunters-grid">
+
+        <!-- Left: side hustle copy -->
+        <div class="hunters-left">
+          <div class="eyebrow coral reveal">⚡ Become a Hunter</div>
+          <h2 class="sh2 reveal d1">Your skills.<br>Your schedule.<br>Real income. Today.</h2>
+          <p class="hunters-lead reveal d2">
+            Every quest posted nearby is a paid gig you can claim in seconds. No interviews. No waiting. Accept, deliver, get paid — all through the app.
+          </p>
+          <div class="earn-stats reveal d2">
+            <div>
+              <span class="earn-val">₱18,500</span>
+              <span class="earn-label">Avg monthly earnings</span>
             </div>
-            <div class="mockup-quests">
-              <div class="mq-row">
-                <div class="mq-info">
-                  <div class="mq-title">Write 5 property listing descriptions</div>
-                  <div class="mq-meta">Due today · Writing</div>
-                </div>
-                <div class="mq-bounty">₱1,750</div>
-              </div>
-              <div class="mq-row">
-                <div class="mq-info">
-                  <div class="mq-title">Photograph Makati condo unit</div>
-                  <div class="mq-meta">Due today · Photography</div>
-                </div>
-                <div class="mq-bounty">₱2,400</div>
-              </div>
-              <div class="mq-row">
-                <div class="mq-info">
-                  <div class="mq-title">Research comparable listings BGC</div>
-                  <div class="mq-meta">Due in 3 hrs · Research</div>
-                </div>
-                <div class="mq-bounty">₱600</div>
-              </div>
-            </div>
-            <div class="mockup-footer">
-              <a href="#cta" class="btn btn-gold" style="font-size:0.8rem;padding:0.45rem 1rem;">Accept Quest</a>
+            <div>
+              <span class="earn-val">4.5 hrs</span>
+              <span class="earn-label">Avg daily questing</span>
             </div>
           </div>
+          <div class="hf-list reveal d3">
+            <div class="hf-row">
+              <span class="hf-icon">⚡</span>
+              <div>Get paid the moment your quest is approved — no week-long payment holds</div>
+            </div>
+            <div class="hf-row">
+              <span class="hf-icon">📍</span>
+              <div>Only see quests near you — work your neighborhood, your hours, your terms</div>
+            </div>
+            <div class="hf-row">
+              <span class="hf-icon">🏆</span>
+              <div>Rank up to unlock higher-bounty quests, priority matching, and bonus payouts</div>
+            </div>
+          </div>
+          <a href="#cta" class="btn btn-coral btn-lg reveal d4">Join as a Hunter →</a>
         </div>
+
+        <!-- Right: hunter phone mockup -->
+        <div class="hunters-right reveal d2">
+          <div class="phone-hunter">
+            <div class="ph-topbar">
+              <div class="ph-label">Your Hunter Dashboard</div>
+              <div class="ph-title">Gold Hunter · BGC Area</div>
+            </div>
+            <div class="ph-screen">
+              <div class="cleared-card">
+                <span class="cc-emoji">🎉</span>
+                <div class="cc-tag">Quest Cleared!</div>
+                <div class="cc-amount">₱ 2,400 credited</div>
+                <div class="cc-meta">Product Photography · ⭐⭐⭐⭐⭐</div>
+              </div>
+              <div class="balance-card">
+                <div>
+                  <div class="bc-label">Available Balance</div>
+                  <div class="bc-amount">₱ 18,340</div>
+                </div>
+                <button class="bc-cashout">Cash Out</button>
+              </div>
+              <div class="rank-mini">
+                <div class="rm-badge">🥇</div>
+                <div class="rm-info">
+                  <div class="rm-rank">Gold Hunter · 3,420 XP</div>
+                  <div class="rm-xp">580 XP to Diamond</div>
+                  <div class="rm-track"><div class="rm-fill"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Hunter rewards -->
-  <section id="rewards">
+  <!-- wave back to bg -->
+  <div class="wave" style="transform:scaleY(-1);margin-top:-1px">
+    <svg viewBox="0 0 1440 56" preserveAspectRatio="none">
+      <path d="M0,28 C360,54 720,2 1080,28 C1260,42 1380,50 1440,28 L1440,56 L0,56 Z" fill="#0f0f18"/>
+    </svg>
+  </div>
+
+  <!-- ══ HUNTER RANKS ══════════════════════════════════════ -->
+  <section id="ranks">
     <div class="container">
-      <div class="section-label">🏆 Hunter rewards</div>
-      <h2>The more you hunt, the more you earn.</h2>
+      <div class="eyebrow mf reveal">🏆 Hunter Ranks</div>
+      <h2 class="sh2 gf reveal d1" style="margin-bottom:3rem">The More You Hunt,<br>The More You Earn.</h2>
       <div class="ranks-grid">
-        <div class="rank-card">
-          <span class="rank-badge rank-bronze">Bronze</span>
+        <div class="rank-card rk-bronze reveal">
+          <div class="rk-glow"></div>
+          <span class="rk-icon">🥉</span>
+          <div class="rk-badge">Bronze</div>
           <h3>Apprentice Hunter</h3>
-          <p>Brand new to the field. Complete your first 5 quests to prove your worth and unlock priority matching.</p>
-          <div class="xp-bar-track"><div class="xp-bar-fill" style="width:18%"></div></div>
+          <p>New to the field. Complete your first 5 quests to prove your worth and unlock priority matching.</p>
+          <div class="xp-track"><div class="xp-fill" style="width:18%"></div></div>
           <div class="xp-label">0 – 500 XP</div>
         </div>
-        <div class="rank-card">
-          <span class="rank-badge rank-silver">Silver</span>
+        <div class="rank-card rk-silver reveal d1">
+          <div class="rk-glow"></div>
+          <span class="rk-icon">🥈</span>
+          <div class="rk-badge">Silver</div>
           <h3>Seasoned Hunter</h3>
-          <p>You've built a track record. Earn a Silver badge, get featured in quest recommendations, and unlock tip bonuses.</p>
-          <div class="xp-bar-track"><div class="xp-bar-fill" style="width:45%"></div></div>
+          <p>You've built a track record. Get featured in recommendations and unlock tip bonuses.</p>
+          <div class="xp-track"><div class="xp-fill" style="width:45%"></div></div>
           <div class="xp-label">500 – 2,000 XP</div>
         </div>
-        <div class="rank-card">
-          <span class="rank-badge rank-gold">Gold</span>
+        <div class="rank-card rk-gold reveal d2">
+          <div class="rk-glow"></div>
+          <span class="rk-icon">🥇</span>
+          <div class="rk-badge">Gold</div>
           <h3>Elite Hunter</h3>
-          <p>Top-tier reliability. Gold Hunters get early access to premium quests and a dedicated support line.</p>
-          <div class="xp-bar-track"><div class="xp-bar-fill" style="width:70%"></div></div>
+          <p>Top-tier reliability. Early access to premium quests and a dedicated support line.</p>
+          <div class="xp-track"><div class="xp-fill" style="width:70%"></div></div>
           <div class="xp-label">2,000 – 6,000 XP</div>
         </div>
-        <div class="rank-card">
-          <span class="rank-badge rank-diamond">Diamond</span>
+        <div class="rank-card rk-diamond reveal d3">
+          <div class="rk-glow"></div>
+          <span class="rk-icon">💎</span>
+          <div class="rk-badge">Diamond</div>
           <h3>Legendary Hunter</h3>
-          <p>The highest rank. Diamond Hunters earn platform revenue share, get a verified badge, and can mentor others.</p>
-          <div class="xp-bar-track"><div class="xp-bar-fill" style="width:92%"></div></div>
+          <p>The highest rank. Revenue share, a verified badge, and the ability to mentor new Hunters.</p>
+          <div class="xp-track"><div class="xp-fill" style="width:92%"></div></div>
           <div class="xp-label">6,000+ XP</div>
         </div>
       </div>
-      <div class="achievements-row">
-        <div class="achievement">
-          <div class="achievement-icon">⚡</div>
-          <h4>Speed Demon</h4>
-          <p>Complete 3 quests in under 2 hours</p>
+      <div class="ach-grid">
+        <div class="ach-card reveal">
+          <span class="ach-icon">⚡</span>
+          <div class="ach-name">Speed Demon</div>
+          <div class="ach-desc">Complete 3 quests in under 2 hours</div>
         </div>
-        <div class="achievement">
-          <div class="achievement-icon">🎯</div>
-          <h4>Dead-Eye</h4>
-          <p>Earn 5-star ratings on 10 consecutive quests</p>
+        <div class="ach-card reveal d1">
+          <span class="ach-icon">🎯</span>
+          <div class="ach-name">Dead-Eye</div>
+          <div class="ach-desc">5-star ratings on 10 consecutive quests</div>
         </div>
-        <div class="achievement">
-          <div class="achievement-icon">🌟</div>
-          <h4>Rising Star</h4>
-          <p>Reach Silver rank within your first 30 days</p>
+        <div class="ach-card reveal d2">
+          <span class="ach-icon">🌟</span>
+          <div class="ach-name">Rising Star</div>
+          <div class="ach-desc">Reach Silver rank in your first 30 days</div>
         </div>
-        <div class="achievement">
-          <div class="achievement-icon">🔥</div>
-          <h4>On Fire</h4>
-          <p>Complete at least one quest every day for 7 days</p>
+        <div class="ach-card reveal d3">
+          <span class="ach-icon">🔥</span>
+          <div class="ach-name">On Fire</div>
+          <div class="ach-desc">One quest every day for 7 days straight</div>
         </div>
-        <div class="achievement">
-          <div class="achievement-icon">🤝</div>
-          <h4>Repeat Hero</h4>
-          <p>Rebooked by the same client 3 times</p>
+        <div class="ach-card reveal">
+          <span class="ach-icon">🤝</span>
+          <div class="ach-name">Repeat Hero</div>
+          <div class="ach-desc">Rebooked by the same client 3 times</div>
         </div>
-        <div class="achievement">
-          <div class="achievement-icon">👑</div>
-          <h4>Guild Master</h4>
-          <p>Refer 5 Hunters who reach Silver rank</p>
+        <div class="ach-card reveal d1">
+          <span class="ach-icon">👑</span>
+          <div class="ach-name">Guild Master</div>
+          <div class="ach-desc">Refer 5 Hunters who reach Silver rank</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Final CTA -->
+  <!-- wave into bg2 -->
+  <div class="wave">
+    <svg viewBox="0 0 1440 56" preserveAspectRatio="none">
+      <path d="M0,28 C180,4 360,52 540,28 C720,4 900,52 1080,28 C1260,4 1380,40 1440,28 L1440,56 L0,56 Z" fill="#0f0f18"/>
+    </svg>
+  </div>
+
+  <!-- ══ FOR BUSINESSES ════════════════════════════════════ -->
+  <section id="businesses">
+    <div class="container">
+      <div class="biz-grid">
+        <div class="biz-left">
+          <div class="eyebrow reveal">🏢 For Businesses</div>
+          <h2 class="sh2 reveal d1">Power your team with on-demand talent.</h2>
+          <p class="reveal d2">QuestIt gives businesses a headless workforce layer — post quests at scale, integrate via API, or white-label the entire platform under your own brand.</p>
+          <div class="biz-features reveal d3">
+            <div class="biz-feat"><span class="bf-chk">✓</span> Headless API with full quest lifecycle control</div>
+            <div class="biz-feat"><span class="bf-chk">✓</span> White-label branding — your logo, your colors</div>
+            <div class="biz-feat"><span class="bf-chk">✓</span> Custom bounty models and payment rails</div>
+            <div class="biz-feat"><span class="bf-chk">✓</span> Compliance-ready with audit logs and worker verification</div>
+          </div>
+          <a href="#cta" class="btn btn-outline reveal d4">Talk to Sales →</a>
+        </div>
+        <div class="biz-right reveal d2">
+          <div class="biz-mockup">
+            <div class="bm-header">
+              <div class="bm-logo">Nest<span>Works</span></div>
+              <div class="bm-pw">powered by QuestIt</div>
+            </div>
+            <div class="bm-quests">
+              <div class="bm-row">
+                <div>
+                  <div class="bm-title">Write 5 property listing descriptions</div>
+                  <div class="bm-meta">Due today · Writing</div>
+                </div>
+                <div class="bm-bounty">₱1,750</div>
+              </div>
+              <div class="bm-row">
+                <div>
+                  <div class="bm-title">Photograph Makati condo unit</div>
+                  <div class="bm-meta">Due today · Photography</div>
+                </div>
+                <div class="bm-bounty">₱2,400</div>
+              </div>
+              <div class="bm-row">
+                <div>
+                  <div class="bm-title">Research comparable listings BGC</div>
+                  <div class="bm-meta">Due in 3 hrs · Research</div>
+                </div>
+                <div class="bm-bounty">₱600</div>
+              </div>
+            </div>
+            <div class="bm-footer">
+              <a href="#cta" class="btn btn-gold" style="font-size:0.8rem;padding:0.45rem 1rem">Accept Quest</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- wave back to bg -->
+  <div class="wave" style="transform:scaleY(-1);margin-top:-1px">
+    <svg viewBox="0 0 1440 56" preserveAspectRatio="none">
+      <path d="M0,28 C180,4 360,52 540,28 C720,4 900,52 1080,28 C1260,4 1380,40 1440,28 L1440,56 L0,56 Z" fill="#0f0f18"/>
+    </svg>
+  </div>
+
+  <!-- ══ CTA ════════════════════════════════════════════════ -->
   <section id="cta">
     <div class="container">
-      <div class="section-label">🚀 Ready to play?</div>
-      <h2>Your first quest is one click away.</h2>
-      <p class="cta-sub">Join thousands of Hunters and clients already on the platform.</p>
-      <div class="cta-btns">
-        <a href="#" class="btn btn-gold">Post a Quest</a>
-        <a href="#" class="btn btn-outline">Become a Hunter →</a>
+      <div class="cta-inner reveal">
+        <span class="cta-corner tl">⚔</span>
+        <span class="cta-corner tr">⚔</span>
+        <span class="cta-corner bl">✦</span>
+        <span class="cta-corner br">✦</span>
+
+        <div class="eyebrow mf" style="display:inline-flex;margin-bottom:1.25rem">🚀 Ready to Play?</div>
+        <h2 class="sh2 gf">Your First Quest is One Click Away.</h2>
+        <p class="cta-sub">Join thousands of Hunters and clients already on QuestIt. Free to join. No subscription.</p>
+
+        <div class="cta-dual">
+          <div class="cta-path">
+            <span class="cta-path-label">I have a task</span>
+            <a href="#" class="btn btn-gold btn-lg">Post a Quest</a>
+          </div>
+          <span class="cta-or">or</span>
+          <div class="cta-path">
+            <span class="cta-path-label">I want to earn</span>
+            <a href="#" class="btn btn-coral btn-lg">Become a Hunter</a>
+          </div>
+        </div>
+
+        <p class="trust-note">Bounties released only when you're satisfied · Available in Metro Manila · Free to join</p>
       </div>
-      <p class="trust-note">Free to join. No subscription. Bounties released only when you're satisfied.</p>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ══ FOOTER ════════════════════════════════════════════ -->
   <footer>
     <a href="#hero" class="footer-logo">Quest<span>It</span></a>
     <span class="footer-copy">© 2025 QuestIt. All rights reserved.</span>
@@ -861,5 +1560,427 @@
     </ul>
   </footer>
 
+  <!-- ══ CINEMATIC SECTION BACKGROUNDS ══════════════════════ -->
+  <style>
+    /* Shared overlay rules */
+    .sect-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .sect-bg svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── Candle flame animation ── */
+    @keyframes questFlicker {
+      0%,100% { transform: scaleX(1) scaleY(1) translateY(0); opacity:1; }
+      20%     { transform: scaleX(0.88) scaleY(1.06) translateY(-1px); opacity:0.95; }
+      40%     { transform: scaleX(1.1) scaleY(0.94) translateY(1px); opacity:0.9; }
+      60%     { transform: scaleX(0.92) scaleY(1.08) translateY(-2px); opacity:1; }
+      80%     { transform: scaleX(1.06) scaleY(0.96) translateY(0); opacity:0.92; }
+    }
+    @keyframes questSmoke {
+      0%   { transform: translateY(0) translateX(0) scaleX(1); opacity:0.18; }
+      50%  { transform: translateY(-18px) translateX(3px) scaleX(1.3); opacity:0.06; }
+      100% { transform: translateY(-36px) translateX(-2px) scaleX(0.7); opacity:0; }
+    }
+
+    /* ── Rank card glow by tier ── */
+    .rank-1 { box-shadow: 0 0 18px rgba(180,140,40,0.18), 0 2px 10px rgba(0,0,0,0.5) !important; border-color: rgba(180,140,40,0.3) !important; }
+    .rank-2 { box-shadow: 0 0 22px rgba(120,180,200,0.2), 0 2px 12px rgba(0,0,0,0.5) !important; border-color: rgba(120,180,200,0.28) !important; }
+    .rank-3 { box-shadow: 0 0 28px rgba(123,110,246,0.28), 0 2px 16px rgba(0,0,0,0.5) !important; border-color: rgba(123,110,246,0.35) !important; }
+    .rank-4 { box-shadow: 0 0 36px rgba(245,200,66,0.38), 0 0 60px rgba(245,200,66,0.15), 0 2px 20px rgba(0,0,0,0.5) !important; border-color: rgba(245,200,66,0.55) !important; }
+  </style>
+
+  <script>
+    /* ── HERO: Candlelit medieval room ── */
+    (function() {
+      var s = document.querySelector('#hero');
+      if (!s) return;
+      var d = document.createElement('div');
+      d.className = 'sect-bg';
+      d.innerHTML = `<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Vignette -->
+        <radialGradient id="hVig" cx="50%" cy="50%" r="72%">
+          <stop offset="0%" stop-color="transparent"/>
+          <stop offset="100%" stop-color="rgba(4,2,1,0.72)"/>
+        </radialGradient>
+        <rect width="1440" height="900" fill="url(#hVig)"/>
+        <!-- Stone wall texture - vertical mortar lines -->
+        <g stroke="rgba(120,90,40,0.04)" stroke-width="1">
+          <line x1="0" y1="0" x2="0" y2="900"/>
+          <line x1="80" y1="0" x2="80" y2="900"/>
+          <line x1="160" y1="0" x2="160" y2="900"/>
+          <line x1="240" y1="0" x2="240" y2="900"/>
+          <line x1="320" y1="0" x2="320" y2="900"/>
+          <line x1="400" y1="0" x2="400" y2="900"/>
+          <line x1="480" y1="0" x2="480" y2="900"/>
+          <line x1="560" y1="0" x2="560" y2="900"/>
+          <line x1="640" y1="0" x2="640" y2="900"/>
+          <line x1="720" y1="0" x2="720" y2="900"/>
+          <line x1="800" y1="0" x2="800" y2="900"/>
+          <line x1="880" y1="0" x2="880" y2="900"/>
+          <line x1="960" y1="0" x2="960" y2="900"/>
+          <line x1="1040" y1="0" x2="1040" y2="900"/>
+          <line x1="1120" y1="0" x2="1120" y2="900"/>
+          <line x1="1200" y1="0" x2="1200" y2="900"/>
+          <line x1="1280" y1="0" x2="1280" y2="900"/>
+          <line x1="1360" y1="0" x2="1360" y2="900"/>
+          <line x1="1440" y1="0" x2="1440" y2="900"/>
+        </g>
+        <!-- Moonlit arched window - right side -->
+        <radialGradient id="hMoon" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(200,220,255,0.12)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <ellipse cx="1300" cy="200" rx="140" ry="160" fill="url(#hMoon)"/>
+        <!-- Window arch outline -->
+        <path d="M1230,360 L1230,200 Q1230,140 1300,140 Q1370,140 1370,200 L1370,360 Z" fill="none" stroke="rgba(180,200,255,0.06)" stroke-width="2"/>
+        <!-- Amber candle glow - left cluster -->
+        <radialGradient id="hCandleL" cx="50%" cy="80%" r="55%">
+          <stop offset="0%" stop-color="rgba(255,180,60,0.22)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <ellipse cx="160" cy="820" rx="180" ry="140" fill="url(#hCandleL)"/>
+        <!-- Candle body left -->
+        <rect x="148" y="770" width="24" height="55" rx="3" fill="rgba(230,220,190,0.18)"/>
+        <!-- Flame left -->
+        <g style="transform-origin:160px 768px; animation:questFlicker 1.8s ease-in-out infinite">
+          <ellipse cx="160" cy="760" rx="7" ry="12" fill="rgba(255,200,80,0.9)"/>
+          <ellipse cx="160" cy="764" rx="4" ry="7" fill="rgba(255,240,180,0.95)"/>
+        </g>
+        <!-- Smoke left -->
+        <ellipse cx="160" cy="748" rx="3" ry="5" fill="rgba(200,180,140,0.12)" style="animation:questSmoke 2.4s ease-out infinite"/>
+        <!-- Parchment scroll hint - bottom left area -->
+        <rect x="40" y="800" width="90" height="65" rx="4" fill="rgba(200,170,100,0.055)" stroke="rgba(200,170,100,0.08)" stroke-width="1"/>
+        <line x1="52" y1="820" x2="118" y2="820" stroke="rgba(200,170,100,0.07)" stroke-width="1"/>
+        <line x1="52" y1="832" x2="108" y2="832" stroke="rgba(200,170,100,0.07)" stroke-width="1"/>
+        <line x1="52" y1="844" x2="115" y2="844" stroke="rgba(200,170,100,0.07)" stroke-width="1"/>
+        <!-- Top amber warmth -->
+        <radialGradient id="hAmberTop" cx="50%" cy="0%" r="60%">
+          <stop offset="0%" stop-color="rgba(180,120,30,0.09)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <rect width="1440" height="900" fill="url(#hAmberTop)"/>
+      </svg>`;
+      s.insertBefore(d, s.firstChild);
+    })();
+
+    /* ── HOW IT WORKS: Castle fortress night ── */
+    (function() {
+      var s = document.querySelector('#how');
+      if (!s) return;
+      var d = document.createElement('div');
+      d.className = 'sect-bg';
+      d.innerHTML = `<svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stars -->
+        <circle cx="80"  cy="60"  r="1" fill="rgba(255,255,255,0.35)"/>
+        <circle cx="220" cy="30"  r="1.2" fill="rgba(255,255,255,0.28)"/>
+        <circle cx="400" cy="80"  r="0.9" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="600" cy="20"  r="1.1" fill="rgba(255,255,255,0.32)"/>
+        <circle cx="780" cy="55"  r="1"   fill="rgba(255,255,255,0.38)"/>
+        <circle cx="950" cy="25"  r="0.8" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="1100" cy="70" r="1.2" fill="rgba(255,255,255,0.28)"/>
+        <circle cx="1280" cy="40" r="1"   fill="rgba(255,255,255,0.35)"/>
+        <circle cx="1400" cy="90" r="0.9" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="160"  cy="110" r="0.8" fill="rgba(255,255,255,0.22)"/>
+        <circle cx="500"  cy="45"  r="1"   fill="rgba(255,255,255,0.25)"/>
+        <circle cx="850"  cy="35"  r="0.9" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="1350" cy="65"  r="1.1" fill="rgba(255,255,255,0.26)"/>
+        <!-- Amber top glow -->
+        <radialGradient id="hwAmber" cx="50%" cy="0%" r="55%">
+          <stop offset="0%" stop-color="rgba(200,140,40,0.10)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <rect width="1440" height="700" fill="url(#hwAmber)"/>
+        <!-- Left tower -->
+        <rect x="60" y="200" width="140" height="500" fill="rgba(30,24,14,0.55)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <!-- Left tower battlements -->
+        <rect x="60" y="180" width="28" height="28" rx="2" fill="rgba(30,24,14,0.6)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <rect x="96" y="180" width="28" height="28" rx="2" fill="rgba(30,24,14,0.6)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <rect x="132" y="180" width="28" height="28" rx="2" fill="rgba(30,24,14,0.6)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <rect x="168" y="180" width="28" height="28" rx="2" fill="rgba(30,24,14,0.6)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <!-- Left tower torch window -->
+        <radialGradient id="hwTorch1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(255,160,40,0.55)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <path d="M110,340 L110,310 Q110,298 120,298 Q130,298 130,310 L130,340 Z" fill="rgba(255,160,40,0.18)"/>
+        <ellipse cx="120" cy="318" rx="22" ry="28" fill="url(#hwTorch1)"/>
+        <!-- Right tower -->
+        <rect x="1240" y="160" width="140" height="540" fill="rgba(30,24,14,0.55)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <!-- Right tower battlements -->
+        <rect x="1240" y="140" width="28" height="28" rx="2" fill="rgba(30,24,14,0.6)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <rect x="1276" y="140" width="28" height="28" rx="2" fill="rgba(30,24,14,0.6)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <rect x="1312" y="140" width="28" height="28" rx="2" fill="rgba(30,24,14,0.6)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <rect x="1348" y="140" width="28" height="28" rx="2" fill="rgba(30,24,14,0.6)" stroke="rgba(120,90,40,0.12)" stroke-width="1"/>
+        <!-- Right tower torch window -->
+        <radialGradient id="hwTorch2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(255,160,40,0.55)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <path d="M1295,300 L1295,270 Q1295,258 1305,258 Q1315,258 1315,270 L1315,300 Z" fill="rgba(255,160,40,0.18)"/>
+        <ellipse cx="1305" cy="278" rx="22" ry="28" fill="url(#hwTorch2)"/>
+        <!-- Portcullis / gate arch bottom center -->
+        <path d="M660,700 L660,580 Q660,520 720,520 Q780,520 780,580 L780,700 Z" fill="rgba(20,16,8,0.5)" stroke="rgba(120,90,40,0.1)" stroke-width="1.5"/>
+        <!-- Portcullis bars -->
+        <line x1="680" y1="540" x2="680" y2="700" stroke="rgba(120,90,40,0.12)" stroke-width="1.5"/>
+        <line x1="700" y1="535" x2="700" y2="700" stroke="rgba(120,90,40,0.12)" stroke-width="1.5"/>
+        <line x1="720" y1="532" x2="720" y2="700" stroke="rgba(120,90,40,0.12)" stroke-width="1.5"/>
+        <line x1="740" y1="532" x2="740" y2="700" stroke="rgba(120,90,40,0.12)" stroke-width="1.5"/>
+        <line x1="760" y1="535" x2="760" y2="700" stroke="rgba(120,90,40,0.12)" stroke-width="1.5"/>
+        <line x1="666" y1="590" x2="774" y2="590" stroke="rgba(120,90,40,0.09)" stroke-width="1"/>
+        <line x1="666" y1="620" x2="774" y2="620" stroke="rgba(120,90,40,0.09)" stroke-width="1"/>
+        <line x1="666" y1="650" x2="774" y2="650" stroke="rgba(120,90,40,0.09)" stroke-width="1"/>
+        <!-- Gate amber glow pool -->
+        <radialGradient id="hwGate" cx="50%" cy="100%" r="40%">
+          <stop offset="0%" stop-color="rgba(255,180,60,0.12)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <rect x="560" y="500" width="320" height="200" fill="url(#hwGate)"/>
+        <!-- Bottom vignette -->
+        <linearGradient id="hwFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="60%" stop-color="transparent"/>
+          <stop offset="100%" stop-color="rgba(14,14,26,0.7)"/>
+        </linearGradient>
+        <rect width="1440" height="700" fill="url(#hwFade)"/>
+      </svg>`;
+      s.insertBefore(d, s.firstChild);
+    })();
+
+    /* ── QUEST TYPES: Night sky + stone grid ── */
+    (function() {
+      var s = document.querySelector('#quest-types');
+      if (!s) return;
+      var d = document.createElement('div');
+      d.className = 'sect-bg';
+      d.innerHTML = `<svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Purple-warm top right glow -->
+        <radialGradient id="qtGlow" cx="85%" cy="10%" r="50%">
+          <stop offset="0%" stop-color="rgba(123,110,246,0.14)"/>
+          <stop offset="50%" stop-color="rgba(200,140,40,0.06)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <rect width="1440" height="800" fill="url(#qtGlow)"/>
+        <!-- Moon -->
+        <circle cx="1320" cy="110" r="52" fill="rgba(230,230,210,0.06)" stroke="rgba(220,220,200,0.08)" stroke-width="1"/>
+        <circle cx="1320" cy="110" r="44" fill="rgba(220,215,190,0.05)"/>
+        <!-- Stars -->
+        <circle cx="60"   cy="80"  r="1.1" fill="rgba(255,255,255,0.38)"/>
+        <circle cx="190"  cy="35"  r="0.9" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="340"  cy="90"  r="1"   fill="rgba(255,255,255,0.35)"/>
+        <circle cx="520"  cy="50"  r="1.2" fill="rgba(255,255,255,0.28)"/>
+        <circle cx="700"  cy="30"  r="0.9" fill="rgba(255,255,255,0.32)"/>
+        <circle cx="860"  cy="75"  r="1"   fill="rgba(255,255,255,0.3)"/>
+        <circle cx="1040" cy="20"  r="1.1" fill="rgba(255,255,255,0.36)"/>
+        <circle cx="1180" cy="65"  r="0.8" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="250"  cy="130" r="0.9" fill="rgba(255,255,255,0.22)"/>
+        <circle cx="640"  cy="100" r="1"   fill="rgba(255,255,255,0.28)"/>
+        <circle cx="920"  cy="50"  r="0.8" fill="rgba(255,255,255,0.3)"/>
+        <!-- Stone grid lines -->
+        <g stroke="rgba(120,90,40,0.045)" stroke-width="1">
+          <line x1="0" y1="200" x2="1440" y2="200"/>
+          <line x1="0" y1="400" x2="1440" y2="400"/>
+          <line x1="0" y1="600" x2="1440" y2="600"/>
+          <line x1="240" y1="0" x2="240" y2="800"/>
+          <line x1="480" y1="0" x2="480" y2="800"/>
+          <line x1="720" y1="0" x2="720" y2="800"/>
+          <line x1="960" y1="0" x2="960" y2="800"/>
+          <line x1="1200" y1="0" x2="1200" y2="800"/>
+        </g>
+        <!-- Bottom vignette -->
+        <linearGradient id="qtFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="70%" stop-color="transparent"/>
+          <stop offset="100%" stop-color="rgba(11,9,6,0.55)"/>
+        </linearGradient>
+        <rect width="1440" height="800" fill="url(#qtFade)"/>
+      </svg>`;
+      s.insertBefore(d, s.firstChild);
+    })();
+
+    /* ── HUNTER RANKS: Central amber glow + stars ── */
+    (function() {
+      var s = document.querySelector('#ranks');
+      if (!s) return;
+      var d = document.createElement('div');
+      d.className = 'sect-bg';
+      d.innerHTML = `<svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Central amber glow -->
+        <radialGradient id="rkAmber" cx="50%" cy="55%" r="55%">
+          <stop offset="0%" stop-color="rgba(245,200,66,0.10)"/>
+          <stop offset="50%" stop-color="rgba(200,140,40,0.05)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <rect width="1440" height="700" fill="url(#rkAmber)"/>
+        <!-- Stars scattered -->
+        <circle cx="70"   cy="50"  r="1"   fill="rgba(255,255,255,0.3)"/>
+        <circle cx="200"  cy="20"  r="0.9" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="380"  cy="70"  r="1.1" fill="rgba(255,255,255,0.35)"/>
+        <circle cx="560"  cy="30"  r="0.8" fill="rgba(255,255,255,0.28)"/>
+        <circle cx="760"  cy="55"  r="1"   fill="rgba(255,255,255,0.3)"/>
+        <circle cx="920"  cy="25"  r="1.2" fill="rgba(255,255,255,0.32)"/>
+        <circle cx="1080" cy="65"  r="0.9" fill="rgba(255,255,255,0.26)"/>
+        <circle cx="1260" cy="40"  r="1"   fill="rgba(255,255,255,0.3)"/>
+        <circle cx="1390" cy="80"  r="0.8" fill="rgba(255,255,255,0.22)"/>
+        <circle cx="140"  cy="110" r="0.9" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="480"  cy="95"  r="1"   fill="rgba(255,255,255,0.24)"/>
+        <circle cx="820"  cy="90"  r="0.8" fill="rgba(255,255,255,0.22)"/>
+        <circle cx="1160" cy="100" r="1.1" fill="rgba(255,255,255,0.28)"/>
+        <!-- Corner vignettes -->
+        <radialGradient id="rkVigTL" cx="0%" cy="0%" r="40%">
+          <stop offset="0%" stop-color="rgba(4,3,2,0.5)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="rkVigBR" cx="100%" cy="100%" r="40%">
+          <stop offset="0%" stop-color="rgba(4,3,2,0.5)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <rect width="1440" height="700" fill="url(#rkVigTL)"/>
+        <rect width="1440" height="700" fill="url(#rkVigBR)"/>
+      </svg>`;
+      s.insertBefore(d, s.firstChild);
+
+      /* Rank card tier styling */
+      var cards = s.querySelectorAll('.rank-card');
+      if (cards.length >= 1) cards[0].classList.add('rank-1');
+      if (cards.length >= 2) cards[1].classList.add('rank-2');
+      if (cards.length >= 3) cards[2].classList.add('rank-3');
+      if (cards.length >= 4) cards[3].classList.add('rank-4');
+    })();
+
+    /* ── CTA: Castle silhouette + amber moonlight ── */
+    (function() {
+      var s = document.querySelector('#cta');
+      if (!s) return;
+      var d = document.createElement('div');
+      d.className = 'sect-bg';
+      d.innerHTML = `<svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Amber moonlight radial -->
+        <radialGradient id="ctaMoon" cx="50%" cy="30%" r="52%">
+          <stop offset="0%" stop-color="rgba(245,200,66,0.11)"/>
+          <stop offset="60%" stop-color="rgba(180,120,30,0.05)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <rect width="1440" height="700" fill="url(#ctaMoon)"/>
+        <!-- Stars -->
+        <circle cx="90"   cy="60"  r="1"   fill="rgba(255,255,255,0.3)"/>
+        <circle cx="230"  cy="25"  r="1.1" fill="rgba(255,255,255,0.35)"/>
+        <circle cx="420"  cy="75"  r="0.9" fill="rgba(255,255,255,0.28)"/>
+        <circle cx="620"  cy="35"  r="1"   fill="rgba(255,255,255,0.32)"/>
+        <circle cx="830"  cy="55"  r="1.2" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="1010" cy="20"  r="0.8" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="1190" cy="70"  r="1"   fill="rgba(255,255,255,0.3)"/>
+        <circle cx="1360" cy="45"  r="1.1" fill="rgba(255,255,255,0.26)"/>
+        <circle cx="160"  cy="120" r="0.9" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="500"  cy="95"  r="1"   fill="rgba(255,255,255,0.24)"/>
+        <circle cx="900"  cy="90"  r="0.8" fill="rgba(255,255,255,0.22)"/>
+        <circle cx="1280" cy="105" r="1"   fill="rgba(255,255,255,0.25)"/>
+        <!-- Castle silhouette centered -->
+        <!-- Main keep -->
+        <rect x="580" y="380" width="280" height="320" fill="rgba(16,10,4,0.65)" stroke="rgba(120,90,40,0.1)" stroke-width="1"/>
+        <!-- Main battlements -->
+        <rect x="580" y="356" width="36" height="30" rx="2" fill="rgba(16,10,4,0.7)"/>
+        <rect x="624" y="356" width="36" height="30" rx="2" fill="rgba(16,10,4,0.7)"/>
+        <rect x="668" y="356" width="36" height="30" rx="2" fill="rgba(16,10,4,0.7)"/>
+        <rect x="712" y="356" width="36" height="30" rx="2" fill="rgba(16,10,4,0.7)"/>
+        <rect x="756" y="356" width="36" height="30" rx="2" fill="rgba(16,10,4,0.7)"/>
+        <rect x="800" y="356" width="36" height="30" rx="2" fill="rgba(16,10,4,0.7)"/>
+        <!-- Left flanking tower -->
+        <rect x="490" y="430" width="100" height="270" fill="rgba(14,9,3,0.62)" stroke="rgba(120,90,40,0.09)" stroke-width="1"/>
+        <rect x="490" y="410" width="22" height="24" rx="2" fill="rgba(14,9,3,0.7)"/>
+        <rect x="520" y="410" width="22" height="24" rx="2" fill="rgba(14,9,3,0.7)"/>
+        <rect x="550" y="410" width="22" height="24" rx="2" fill="rgba(14,9,3,0.7)"/>
+        <rect x="568" y="410" width="22" height="24" rx="2" fill="rgba(14,9,3,0.7)"/>
+        <!-- Right flanking tower -->
+        <rect x="850" y="430" width="100" height="270" fill="rgba(14,9,3,0.62)" stroke="rgba(120,90,40,0.09)" stroke-width="1"/>
+        <rect x="850" y="410" width="22" height="24" rx="2" fill="rgba(14,9,3,0.7)"/>
+        <rect x="880" y="410" width="22" height="24" rx="2" fill="rgba(14,9,3,0.7)"/>
+        <rect x="910" y="410" width="22" height="24" rx="2" fill="rgba(14,9,3,0.7)"/>
+        <rect x="934" y="410" width="22" height="24" rx="2" fill="rgba(14,9,3,0.7)"/>
+        <!-- Glowing arched windows on keep -->
+        <radialGradient id="ctaWin1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(255,200,80,0.6)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="ctaWin2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(255,200,80,0.55)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <path d="M638,470 L638,445 Q638,432 650,432 Q662,432 662,445 L662,470 Z" fill="rgba(255,200,80,0.22)"/>
+        <ellipse cx="650" cy="446" rx="20" ry="26" fill="url(#ctaWin1)"/>
+        <path d="M778,470 L778,445 Q778,432 790,432 Q802,432 802,445 L802,470 Z" fill="rgba(255,200,80,0.22)"/>
+        <ellipse cx="790" cy="446" rx="20" ry="26" fill="url(#ctaWin2)"/>
+        <!-- Gate arch with glow pool -->
+        <path d="M690,700 L690,570 Q690,530 720,530 Q750,530 750,570 L750,700 Z" fill="rgba(10,7,2,0.7)" stroke="rgba(120,90,40,0.1)" stroke-width="1.5"/>
+        <radialGradient id="ctaPool" cx="50%" cy="100%" r="50%">
+          <stop offset="0%" stop-color="rgba(255,180,60,0.18)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <ellipse cx="720" cy="700" rx="120" ry="50" fill="url(#ctaPool)"/>
+        <!-- Corner vignettes -->
+        <radialGradient id="ctaVig1" cx="0%" cy="0%" r="40%">
+          <stop offset="0%" stop-color="rgba(6,4,1,0.6)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="ctaVig2" cx="100%" cy="0%" r="40%">
+          <stop offset="0%" stop-color="rgba(6,4,1,0.6)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="ctaVig3" cx="0%" cy="100%" r="40%">
+          <stop offset="0%" stop-color="rgba(6,4,1,0.5)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="ctaVig4" cx="100%" cy="100%" r="40%">
+          <stop offset="0%" stop-color="rgba(6,4,1,0.5)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <rect width="1440" height="700" fill="url(#ctaVig1)"/>
+        <rect width="1440" height="700" fill="url(#ctaVig2)"/>
+        <rect width="1440" height="700" fill="url(#ctaVig3)"/>
+        <rect width="1440" height="700" fill="url(#ctaVig4)"/>
+      </svg>`;
+      s.insertBefore(d, s.firstChild);
+    })();
+  </script>
+
+  <script>
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Animated counters
+    function runCounter(el) {
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const dur = 1400;
+      const step = target / (dur / 16);
+      let cur = 0;
+      const tick = () => {
+        cur = Math.min(cur + step, target);
+        el.textContent = Math.floor(cur).toLocaleString() + suffix;
+        if (cur < target) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+    const cntObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !e.target.dataset.done) {
+          e.target.dataset.done = '1';
+          runCounter(e.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
+  </script>
 </body>
 </html>
